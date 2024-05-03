@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  grafana_mobile_sensing:
+    image: grafana/grafana:latest
+    container_name: grafana_mobile_sensing
+    restart: unless-stopped
+    ports:
+     - '3003:3000'
+  php_mobile_sensing:
+    image: php:apache
+    container_name: webserver_mobile_sensing
+    ports:
+      - '8083:80'
+    volumes:
+      - /home/filippoonesti/mobile_sensing/html:/var/www/html/
