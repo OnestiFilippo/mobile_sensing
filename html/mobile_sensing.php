@@ -5,7 +5,11 @@ $jsonData = file_get_contents('php://input');
 $data = json_decode($jsonData, true);
 // Check if decoding was successful
 if ($data !== null) {
-   $file = 'record.json';
+   $dim = count($data);
+   $filename = $data[$dim-1]['name'];
+   unset($data[$dim-1]);
+   $jsonData = json_encode($data);
+   $file = 'records/'.$filename;
    file_put_contents($file, $jsonData);
 } else {
    // JSON decoding failed
