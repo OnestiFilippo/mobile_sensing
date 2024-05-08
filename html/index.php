@@ -1,3 +1,10 @@
+<?php
+	if(isset($_GET["file"]))
+	{
+		$filename = "records/".$_GET["file"];
+                copy($filename, "records/selected.json");
+	}
+?>
 <html>
 <head>
 <style>
@@ -12,12 +19,12 @@
     .container {
         display: flex;
         height: 100vh;
-        height: 80%; /* Altezza della finestra */
-        width: 80%; /* Larghezza della finestra */
+        height: 90%; /* Altezza della finestra */
+        width: 90%; /* Larghezza della finestra */
     }
     .left-div {
         flex: 30%;
-        background-color: lightblue;
+        background-color: lightgray;
         display: flex; /* Per centrare verticalmente */
         justify-content: center; /* Per centrare orizzontalmente */
         align-items: center; /* Per centrare verticalmente */
@@ -25,7 +32,6 @@
     }
     .right-div {
         flex: 70%;
-        background-color: lightgreen;
         display: flex; /* Per centrare verticalmente */
         justify-content: center; /* Per centrare orizzontalmente */
         align-items: center; /* Per centrare verticalmente */
@@ -35,6 +41,7 @@
 <body>
 <div class="container">
     <div class="left-div">
+      <h1> RECORDS: </h1>
       <?php
 
 	$dir    = 'records';
@@ -47,13 +54,13 @@
 
 	foreach ($files as $file)
 	{
-  		$date = substr($file, 7, 16);
-  		echo "<a href='filippoonesti.ovh:83/index.php?".$date."'><h2> ".$date." </h2> </a>";
+  		$date = substr($file, 7, 14);
+  		echo "<a href='index.php?file=".$file."'><h2> ".$date." </h2> </a>";
 	}
 	?>
     </div>
     <div class="right-div">
-            <iframe src="http://192.168.1.55:3003/d-solo/cdklwcf5sehhcb/mobile-sensing?from=now&to=now-6h&orgId=1&panelId=1" width="1400" height="700" frameborder="0"></iframe>
+            <iframe src="http://192.168.1.55:3003/d-solo/cdklwcf5sehhcb/mobile-sensing?from=now&to=now-6h&orgId=1&panelId=1" width="100%" height="100%" frameborder="0"></iframe>
     </div>
 </div>
 </body>
