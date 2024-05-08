@@ -10,7 +10,7 @@ Il sistema è composto da un dispositivo posizionabile su una bicicletta o un ca
 Per il componente server viene utilizzato docker per la creazione dei container necessari per la ricezione dei dati dal dispositivo e per la visualizzazione dei risultati nella pagina web dedicata.
 Viene utilizzato un file docker-compose.yml per la creazione dei container. Vengono creati i container per la visualizzazione dei grafici tramite grafana e per la creazione del webserver Apache su cui è possibile accedere alle pagine web. 
 
-'''
+```
 version: "3.8"
 services:
   grafana_mobile_sensing:
@@ -26,10 +26,10 @@ services:
       - '8083:80'
     volumes:
       - /home/filippoonesti/mobile_sensing/html:/var/www/html/
-'''
+```
 
 Per eseguire il file docker-compose e per avviare i container si utilizza il seguente comando:
 
-'''
+```
 docker compose up -d
-'''
+```
