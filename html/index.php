@@ -31,6 +31,7 @@
         flex-direction: column;
     }
     .right-div {
+        background-color: gray;
         flex: 70%;
         display: flex; /* Per centrare verticalmente */
         justify-content: center; /* Per centrare orizzontalmente */
@@ -43,7 +44,6 @@
     <div class="left-div">
       <h1> RECORDS: </h1>
       <?php
-
 	$dir    = 'records';
 	$files = scandir($dir, SCANDIR_SORT_ASCENDING);
 
@@ -55,12 +55,17 @@
 	foreach ($files as $file)
 	{
   		$date = substr($file, 7, 14);
-  		echo "<a href='index.php?file=".$file."'><h2> ".$date." </h2> </a>";
+  		echo "<a href='index.php?file=".$file."'><h3> ".$date." </h3> </a>";
 	}
 	?>
     </div>
     <div class="right-div">
-            <iframe src="http://192.168.1.55:3003/d-solo/cdklwcf5sehhcb/mobile-sensing?from=now&to=now-6h&orgId=1&panelId=1" width="100%" height="100%" frameborder="0"></iframe>
+	<?php
+           if(isset($_GET["file"]))
+	   {
+		echo '<iframe src="http://192.168.1.55:3003/d-solo/cdklwcf5sehhcb/mobile-sensing?from=now&to=now-6h&orgId=1&panelId=1" width="100%" height="100%" frameborder="0"></iframe>';
+	   }
+	?>
     </div>
 </div>
 </body>
