@@ -6,14 +6,18 @@ def on_connect(client, userdata, flags, rc):
   client.subscribe("records")
 
 def on_message(client, userdata, msg):
-  #print(msg.payload.decode())
   jdata = json.loads(msg.payload.decode())
   print("Received record with "+str(len(jdata)-1)+" readings")
-  filename = jdata[-1]["name"]
-  jdata.pop()
-  f = open(filename, "w")
-  f.write(str(jdata))
-  f.close()
+  try:
+    filename = jdata[-1]["name"]
+    jdata.pop()
+    f = open("html/records/"+filename, "w")
+    f.write(str(json.dumps(jdata, sort_keys=True, indent=4)))
+    f.close()
+  except Exception as e:
+    print("Error "+str(e))
+    exit(1)
+
   #client.disconnect()
 
 client = mqtt.Client()
