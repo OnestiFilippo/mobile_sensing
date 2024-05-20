@@ -18,8 +18,6 @@ def on_message(client, userdata, msg):
     print("Error "+str(e))
     exit(1)
 
-  #client.disconnect()
-
 client = mqtt.Client()
 client.connect("192.168.1.55",1883,60)
 
