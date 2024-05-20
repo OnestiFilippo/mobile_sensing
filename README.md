@@ -26,6 +26,11 @@ services:
       - '8083:80'
     volumes:
       - /home/filippoonesti/mobile_sensing/html:/var/www/html/
+  mqtt_mobile_sensing:
+    image: filippoonesti/mobile_sensing_mqtt:1.5
+    container_name: mqtt_mobile_sensing
+    volumes:
+      - /home/filippoonesti/mobile_sensing/html/records:/home/filippoonesti/mobile_sensing/html/records
 ```
 
 Per eseguire il file docker-compose e per avviare i container si utilizza il seguente comando:
