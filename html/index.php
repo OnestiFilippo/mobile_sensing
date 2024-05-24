@@ -1,11 +1,15 @@
 <?php
 	if(isset($_GET["file"]))
 	{
-		$filename = "records/".$_GET["file"];
-                copy($filename, "records/selected.json");
+	   $filename = "records/".$_GET["file"];
+           if (file_exists($filename))
+ 	   {
+    	      copy($filename, "records/selected.json");
+	   }
 	}
 ?>
 <html>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <head>
 <style>
     body {
@@ -44,19 +48,33 @@
     <div class="left-div">
       <h1> RECORDS: </h1>
       <?php
-	$dir    = 'records';
+	$dir = 'records';
 	$files = scandir($dir, SCANDIR_SORT_ASCENDING);
 
  	$dim = count($files);
 	unset($files[0]);
 	unset($files[1]);
+        unset($files[2]);
 	unset($files[$dim-1]);
+
+	$arr_all = array();
+        foreach ($files as $file)
+        {
+           $tmp = json_decode(file_get_contents("records/".$file));
+           foreach($tmp as $rec)
+           {
+               array_push($arr_all, $rec);
+           }
+        }
+        $json = json_encode($arr_all);
+        file_put_contents("records/all.json", $json);
 
 	foreach ($files as $file)
 	{
   		$date = substr($file, 7, 14);
   		echo "<a href='index.php?file=".$file."'><h3> ".$date." </h3> </a>";
 	}
+        echo "<a href='index.php?file=all.json'><h3> ALL </h3> </a>";
 	?>
     </div>
     <div class="right-div">
