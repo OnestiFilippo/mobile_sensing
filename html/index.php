@@ -41,6 +41,14 @@
         justify-content: center; /* Per centrare orizzontalmente */
         align-items: center; /* Per centrare verticalmente */
     }
+    .btn {
+  	background-color: #6681d1;
+  	color: black;
+        border-radius: 15px;
+  	padding: 0px 15px;
+        margin: 5px 5px;
+  	text-decoration: none;
+    }
 </style>
 <title> MOBILE SENSING </title>
 <body>
@@ -72,9 +80,9 @@
 	foreach ($files as $file)
 	{
   		$date = substr($file, 7, 14);
-  		echo "<a href='index.php?file=".$file."'><h3> ".$date." </h3> </a>";
+  		echo "<a  class='btn' href='index.php?file=".$file."'><h3> ".$date." </h3> </a>";
 	}
-        echo "<a href='index.php?file=all.json'><h3> ALL </h3> </a>";
+        echo "<a class='btn' href='index.php?file=all.json'><h3> ALL </h3> </a>";
 	?>
     </div>
     <div class="right-div">
