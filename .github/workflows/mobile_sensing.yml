@@ -29,10 +29,12 @@ jobs:
     - name: Test with pytest
       run: |
         cd tests && pytest
+        cd
 
     - name: Test with PHPUnit
       run: |
-        ./tests/testPHP/phpunit.phar FileClassTest.php
+        cd tests/testPHP && ./phpunit.phar FileClassTest.php
+        cd
 
     - name: Docker Login
       uses: docker/login-action@v3
