@@ -1,13 +1,3 @@
-<?php
-	if(isset($_GET["file"]))
-	{
-	   $filename = "records/".$_GET["file"];
-           if (file_exists($filename))
- 	   {
-    	      copy($filename, "records/selected.json");
-	   }
-	}
-?>
 <html>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <head>
@@ -58,38 +48,67 @@
       <?php
 	$dir = 'records';
 	$files = scandir($dir, SCANDIR_SORT_ASCENDING);
-
- 	$dim = count($files);
-	unset($files[0]);
-	unset($files[1]);
-        unset($files[2]);
-	unset($files[$dim-1]);
-
-	$arr_all = array();
-        foreach ($files as $file)
-        {
-           $tmp = json_decode(file_get_contents("records/".$file));
-           foreach($tmp as $rec)
-           {
-               array_push($arr_all, $rec);
-           }
-        }
-        $json = json_encode($arr_all);
-        file_put_contents("records/all.json", $json);
-
-	foreach ($files as $file)
+	if(count($files)>4)
 	{
-  		$date = substr($file, 7, 14);
-  		echo "<a  class='btn' href='index.php?file=".$file."'><h3> ".$date." </h3> </a>";
+		$findKey = array_search('.',$files);
+		unset($files[$findKey]);
+        	$findKey = array_search('..',$files);
+        	unset($files[$findKey]);
+		$findKey = array_search('selected.json',$files);
+        	unset($files[$findKey]);
+		$findKey = array_search('all.json',$files);
+        	unset($files[$findKey]);
+
+		$arr_all = array();
+        	foreach ($files as $file)
+        	{
+           		$tmp = json_decode(file_get_contents("records/".$file));
+			if(!is_array($tmp))
+			{
+				throw new Exception("Error with File");
+			}
+	   		foreach($tmp as $rec)
+           		{
+               			array_push($arr_all, $rec);
+           		}
+        	}
+        	$json = json_encode($arr_all);
+		if(json_validate($json))
+		{
+			file_put_contents("records/all.json", $json);
+		}
+		else
+		{
+			throw new Exception('Error with file.');
+		}
+
+		foreach ($files as $file)
+		{
+  			$date = substr($file, 7, 14);
+  			echo "<a  class='btn' href='index.php?file=".$file."'><h3> ".$date." </h3> </a>";
+		}
+        	echo "<a class='btn' href='index.php?file=all.json'><h3> ALL </h3> </a>";
 	}
-        echo "<a class='btn' href='index.php?file=all.json'><h3> ALL </h3> </a>";
+	else
+	{
+		echo "<h1>NO FILE TO SHOW</h1>";
+	}
 	?>
     </div>
     <div class="right-div">
 	<?php
            if(isset($_GET["file"]))
 	   {
-		echo '<iframe src="http://192.168.1.55:3003/d-solo/cdklwcf5sehhcb/mobile-sensing?from=now&to=now-6h&orgId=1&panelId=1" width="100%" height="100%" frameborder="0"></iframe>';
+		$filename = "records/".$_GET["file"];
+           	if (file_exists($filename))
+           	{
+              		copy($filename, "records/selected.json");
+			echo '<iframe src="http://192.168.1.55:3003/d-solo/cdklwcf5sehhcb/mobile-sensing?from=now&to=now-6h&orgId=1&panelId=1" width="100%" height="100%" frameborder="0"></iframe>';
+		}
+		else
+		{
+			throw new Exception('Error selecting file.');
+		}
 	   }
 	?>
     </div>
