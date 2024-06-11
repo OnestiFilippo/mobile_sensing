@@ -28,7 +28,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pytest
+        cd tests && pytest
 
     - name: Test with PHPUnit
       run: |
