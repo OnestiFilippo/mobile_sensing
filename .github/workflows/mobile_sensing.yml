@@ -48,4 +48,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/isa:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/mobile_sensing_mqtt:latest
