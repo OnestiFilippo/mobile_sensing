@@ -43,6 +43,8 @@ docker compose up -d
 
 Una volta messi in esecuzione tutti i container necessari, è possibile accedere alla pagina web per la visualizzazione dei record all'indirizzo *http://localhost:8083*.
 
+![Webpage](https://github.com/OnestiFilippo/mobile_sensing/assets/77025139/d6f8cd72-aaa1-408e-8258-fa120c57f258)
+
 ## Componente Client
 
 La componente client del progetto consiste in un dispositivo hardware composto da un microcontrollore Raspberry Pi Pico W, un accelerometro, un modulo GPS, un display e due pulsanti.
