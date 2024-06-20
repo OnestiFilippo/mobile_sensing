@@ -24,6 +24,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install paho-mqtt
         pip install pytest
+        pip install hypothesis
         sudo apt install php-cli php-json php-mbstring php-xml php-pcov php-xdebug
 
     - name: Test with pytest
