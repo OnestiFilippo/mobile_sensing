@@ -5,7 +5,7 @@
 Realizzazione di un sistema in grado di rilevare buche. 
 Il sistema è composto da un dispositivo posizionabile su una bicicletta o un carretto, in grado di rilevare tramite un accelerometro la presenza di buche e la posizione esatta della rilevazione tramite un modulo GPS, e un componente server in grado di ricevere i dati dal dispositivo, di elaborarli e di permetterne la visualizzazione tramite un'interfaccia web.
 
-## Installazione
+## Installazione Componente Server
 
 Per il componente server viene utilizzato docker per la creazione dei container necessari per la ricezione dei dati dal dispositivo e per la visualizzazione dei risultati nella pagina web dedicata.
 Viene utilizzato un file docker-compose.yml per la creazione dei container. Vengono creati i container per la visualizzazione dei grafici tramite grafana e per la creazione del webserver Apache su cui è possibile accedere alle pagine web. 
@@ -42,4 +42,12 @@ docker compose up -d
 ```
 
 Una volta messi in esecuzione tutti i container necessari, è possibile accedere alla pagina web per la visualizzazione dei record all'indirizzo *http://localhost:8083*.
+
+## Componente Client
+
+La componente client del progetto consiste in un dispositivo hardware composto da un microcontrollore Raspberry Pi Pico W, un accelerometro, un modulo GPS, un display e due pulsanti.
+Sul microcontrollore, tramite MicroPython, vengono letti i dati dai sensori e vengono inviati alla componente Server tramite MQTT.
+I file per l'esecuzione dello scirpt MicroPython e le librerie necessarie sono all'interno della cartella `code-pico`.
+
+
 
