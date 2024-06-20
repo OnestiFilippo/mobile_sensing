@@ -49,5 +49,6 @@ La componente client del progetto consiste in un dispositivo hardware composto d
 Sul microcontrollore, tramite MicroPython, vengono letti i dati dai sensori e vengono inviati alla componente Server tramite MQTT.
 I file per l'esecuzione dello scirpt MicroPython e le librerie necessarie sono all'interno della cartella `code-pico`.
 
-![MS](https://github.com/OnestiFilippo/mobile_sensing/assets/77025139/843c07e6-4f43-4bf0-bd6c-6c8d2e3c6059)
+![MS](https://github.com/OnestiFilippo/mobile_sensing/assets/77025139/be6a75e0-7746-47ff-bd65-1dd09d1a98cf)
+
 
