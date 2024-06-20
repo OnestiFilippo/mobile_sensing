@@ -22,13 +22,15 @@ services:
   php_mobile_sensing:
     image: php:apache
     container_name: webserver_mobile_sensing
+    restart: unless-stopped
     ports:
       - '8083:80'
     volumes:
       - /home/filippoonesti/mobile_sensing/html:/var/www/html/
   mqtt_mobile_sensing:
-    image: filippoonesti/mobile_sensing_mqtt:1.6
+    image: filippoonesti/mobile_sensing_mqtt:latest
     container_name: mqtt_mobile_sensing
+    restart: unless-stopped
     volumes:
       - /home/filippoonesti/mobile_sensing/html/records:/home/filippoonesti/mobile_sensing/html/records
 ```
@@ -38,3 +40,6 @@ Per eseguire il file docker-compose e per avviare i container si utilizza il seg
 ```
 docker compose up -d
 ```
+
+Una volta messi in esecuzione tutti i container necessari, è possibile accedere alla pagina web per la visualizzazione dei record all'indirizzo *http://localhost:8083*.
+
