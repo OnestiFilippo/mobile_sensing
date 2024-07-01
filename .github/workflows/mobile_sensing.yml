@@ -32,6 +32,11 @@ jobs:
         cd tests && pytest
         cd
 
+    - name: Test coverage
+      run: |
+        coverage run -m pytest
+        coverage report -m
+
     - name: Test with PHPUnit
       run: |
         cd tests/testPHP && ./phpunit.phar FileClassTest.php
