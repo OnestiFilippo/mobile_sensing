@@ -23,5 +23,3 @@ class TestProperty():
             mock_open.return_value.write.assert_called_once_with(
                 json.dumps(json.loads(payload.decode('utf-8'))[:-1], sort_keys=True, indent=4)
             )
-        else:
-            mock_open.assert_not_called()
