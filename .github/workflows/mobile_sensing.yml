@@ -25,6 +25,7 @@ jobs:
         pip install paho-mqtt
         pip install pytest
         pip install hypothesis
+        pip install coverage
         sudo apt install php-cli php-json php-mbstring php-xml php-pcov php-xdebug
 
     - name: Test with pytest
