@@ -1,0 +1,2 @@
+SSID = "ReteOnesti"
+PASSWORD = "FamigliaOnesti!"
