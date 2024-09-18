@@ -1,2 +1,2 @@
-SSID = "ReteOnesti"
-PASSWORD = "FamigliaOnesti!"
+SSID = "AAA"
+PASSWORD = "AAA"
